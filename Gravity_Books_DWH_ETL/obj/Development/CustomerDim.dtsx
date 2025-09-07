@@ -1,0 +1,1328 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/20/2025 8:29:27 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-U04QQJ5"
+  DTS:CreatorName="DESKTOP-U04QQJ5\ZALL-Store"
+  DTS:DTSID="{0B4DD737-D5BC-49D3-88A9-5F63C22842C7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{835E4D56-A474-4E4E-9228-65A3305C5C7D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load Customer Dim"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4867AD63-EB54-44C2-8A04-EB2F6796FBC9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load Customer Dim"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load Customer Dim\Customer Fullname"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Customer Fullname"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load Customer Dim\Customer Fullname.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Customer Fullname.Inputs[Derived Column Input].Columns[first_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="first_name"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Customer Fullname.Inputs[Derived Column Input].Columns[last_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="last_name"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[last_name]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\Customer Fullname.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Output].Columns[CustomerFullname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Output].Columns[CustomerFullname]"
+                      name="CustomerFullname"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,200,1252)([REPLACENULL](#{Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[first_name]},"") + " " + [REPLACENULL](#{Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[last_name]},""))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,200,1252)(REPLACENULL(first_name,"") + " " + REPLACENULL(last_name,""))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\Customer Fullname.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load Customer Dim\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimCustomer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load Customer Dim\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{0B22268C-926D-4981-B11A-75AB11429A4E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBooks_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId_BK]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[first_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerFirstName]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[first_name]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[last_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerLastName]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[last_name]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="350"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerEmail]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[email]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[status_id]"
+                      cachedDataType="i4"
+                      cachedName="status_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[StatusId_BK]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[status_id]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[address_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="address_status"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressStatus]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_status]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[address_id]"
+                      cachedDataType="i4"
+                      cachedName="address_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressId_BK]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_id]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].Columns[CustomerFullname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="CustomerFullname"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerFullname]"
+                      lineageId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Output].Columns[CustomerFullname]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId_SK]"
+                      dataType="i4"
+                      name="CustomerId_SK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerId_BK]"
+                      dataType="i4"
+                      name="CustomerId_BK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerFirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CustomerFirstName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerLastName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CustomerLastName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerEmail]"
+                      codePage="1252"
+                      dataType="str"
+                      length="350"
+                      name="CustomerEmail" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[StatusId_BK]"
+                      dataType="i4"
+                      name="StatusId_BK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="AddressStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[AddressId_BK]"
+                      dataType="i4"
+                      name="AddressId_BK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerFullname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CustomerFullname" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load Customer Dim\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load Customer Dim\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimCustomer] SET [AddressStatus] = ?,[CustomerEmail] = ? WHERE [AddressId_BK] = ? AND [CustomerId_BK] = ? AND [StatusId_BK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load Customer Dim\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="{0B22268C-926D-4981-B11A-75AB11429A4E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBooks_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[address_id]"
+                      cachedDataType="i4"
+                      cachedName="address_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_id]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[address_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="address_status"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_status]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="350"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[email]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].Columns[status_id]"
+                      cachedDataType="i4"
+                      cachedName="status_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[status_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="350"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load Customer Dim\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load Customer Dim\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load Customer Dim\OLTP src"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLTP src"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[customer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT c.customer_id, c.first_name, c.last_name, 
+		c.email, ca.address_id, ca.status_id, ass.address_status
+FROM customer c
+LEFT JOIN customer_address ca
+ON c.customer_id = ca.customer_id
+LEFT JOIN address_status ass
+ON ca.status_id = ass.status_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load Customer Dim\OLTP src.Connections[OleDbConnection]"
+                  connectionManagerID="{748BCD13-21FC-4204-B557-1ED7B2D57CD5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.gravity_books]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[first_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      length="200"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[first_name]"
+                      name="first_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[last_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      length="200"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[last_name]"
+                      name="last_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      length="350"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[address_id]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_id]"
+                      name="address_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[status_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[status_id]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[status_id]"
+                      name="status_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[address_status]"
+                      length="30"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_status]"
+                      name="address_status"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[first_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="first_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[last_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="last_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="350"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[address_id]"
+                      dataType="i4"
+                      name="address_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[status_id]"
+                      dataType="i4"
+                      name="status_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].ExternalColumns[address_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="address_status" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[first_name]"
+                      name="first_name" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[last_name]"
+                      name="last_name" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="350"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[email]"
+                      name="email" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[address_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[address_id]"
+                      name="address_id" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[status_id]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[status_id]"
+                      name="status_id" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[address_status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[address_status]"
+                      name="address_status" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="SCD - Email, address_status Type1"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [AddressId_BK], [AddressStatus], [CustomerEmail], [CustomerFirstName], [CustomerFullname], [CustomerId_BK], [CustomerLastName], [StatusId_BK] FROM [dbo].[DimCustomer]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Connections[LookupConnection]"
+                  connectionManagerID="{0B22268C-926D-4981-B11A-75AB11429A4E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.GravityBooks_DWH]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].Columns[address_id]"
+                      cachedDataType="i4"
+                      cachedName="address_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[AddressId_BK]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].Columns[address_status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="address_status"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[AddressStatus]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[address_status]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].Columns[email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="350"
+                      cachedName="email"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerEmail]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[email]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].Columns[first_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="first_name"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerFirstName]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[first_name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].Columns[CustomerFullname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="CustomerFullname"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerFullname]"
+                      lineageId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Output].Columns[CustomerFullname]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerId_BK]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[customer_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].Columns[last_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="last_name"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerLastName]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[last_name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].Columns[status_id]"
+                      cachedDataType="i4"
+                      cachedName="status_id"
+                      externalMetadataColumnId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[StatusId_BK]"
+                      lineageId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output].Columns[status_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[AddressId_BK]"
+                      dataType="i4"
+                      name="AddressId_BK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[AddressStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="AddressStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerEmail]"
+                      codePage="1252"
+                      dataType="str"
+                      length="350"
+                      name="CustomerEmail" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerFirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CustomerFirstName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerFullname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CustomerFullname" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerId_BK]"
+                      dataType="i4"
+                      name="CustomerId_BK" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerLastName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="CustomerLastName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[StatusId_BK]"
+                      dataType="i4"
+                      name="StatusId_BK" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load Customer Dim.Paths[Changing Attribute Updates Output]"
+              endId="Package\DFT - Load Customer Dim\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Outputs[Changing Attribute Updates Output]" />
+            <path
+              refId="Package\DFT - Load Customer Dim.Paths[Derived Column Output]"
+              endId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Inputs[Slowly Changing Dimension Input]"
+              name="Derived Column Output"
+              startId="Package\DFT - Load Customer Dim\Customer Fullname.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - Load Customer Dim.Paths[New Output]"
+              endId="Package\DFT - Load Customer Dim\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1.Outputs[New Output]" />
+            <path
+              refId="Package\DFT - Load Customer Dim.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Load Customer Dim\Customer Fullname.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - Load Customer Dim\OLTP src.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="200.8,41.6"
+          Id="Package\DFT - Load Customer Dim"
+          TopLeft="229.285714773803,83.3529411034085" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Load Customer Dim">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\DFT - Load Customer Dim\OLTP src"
+          TopLeft="250.7,5.49999999999995" />
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\DFT - Load Customer Dim\Customer Fullname"
+          TopLeft="226.3,107.1" />
+        <EdgeLayout
+          Id="Package\DFT - Load Customer Dim.Paths[OLE DB Source Output]"
+          TopLeft="310.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="243.2,41.6"
+          Id="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1"
+          TopLeft="213.928571399681,207.935294118317" />
+        <EdgeLayout
+          Id="Package\DFT - Load Customer Dim.Paths[Derived Column Output]"
+          TopLeft="310.7,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.8285713996814,59.2352941183172"
+              Start="0,0"
+              End="24.8285713996814,51.7352941183172">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6176470591586" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.6176470591586"
+                    Point2="0,29.6176470591586"
+                    Point3="4,29.6176470591586" />
+                  <mssgle:LineSegment
+                    End="20.8285713996814,29.6176470591586" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.8285713996814,29.6176470591586"
+                    Point2="24.8285713996814,29.6176470591586"
+                    Point3="24.8285713996814,33.6176470591586" />
+                  <mssgle:LineSegment
+                    End="24.8285713996814,51.7352941183172" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\DFT - Load Customer Dim\Insert Destination"
+          TopLeft="5.50000000000004,310.3" />
+        <EdgeLayout
+          Id="Package\DFT - Load Customer Dim.Paths[New Output]"
+          TopLeft="296.328571399681,249.535294118317">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-209.628571399681,60.7647058816826"
+              Start="0,0"
+              End="-209.628571399681,53.2647058816826">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5441753169149" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5441753169149"
+                    Point2="0,24.5441753169149"
+                    Point3="-4,24.5441753169149" />
+                  <mssgle:LineSegment
+                    End="-205.628571399681,24.5441753169149" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-205.628571399681,24.5441753169149"
+                    Point2="-209.628571399681,24.5441753169149"
+                    Point3="-209.628571399681,28.5441753169149" />
+                  <mssgle:LineSegment
+                    End="-209.628571399681,53.2647058816826" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-131.905672418591,29.5441753169149,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\DFT - Load Customer Dim\OLE DB Command"
+          TopLeft="311.157143033524,314.123529408413" />
+        <EdgeLayout
+          Id="Package\DFT - Load Customer Dim.Paths[Changing Attribute Updates Output]"
+          TopLeft="374.728571399681,249.535294118317">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.8285716338427,64.5882352900959"
+              Start="0,0"
+              End="18.8285716338427,57.0882352900959">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0885813132544" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.0885813132544"
+                    Point2="0,26.0885813132544"
+                    Point3="4,26.0885813132544" />
+                  <mssgle:LineSegment
+                    End="14.8285716338427,26.0885813132544" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.8285716338427,26.0885813132544"
+                    Point2="18.8285716338427,26.0885813132544"
+                    Point3="18.8285716338427,30.0885813132544" />
+                  <mssgle:LineSegment
+                    End="18.8285716338427,57.0882352900959" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-69.1196204330787,31.0885813132544,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load Customer Dim\OLTP src">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load Customer Dim\SCD - Email, address_status Type1">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionID&gt;{0B22268C-926D-4981-B11A-75AB11429A4E}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DimCustomer]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLTP src.Outputs[OLE DB Source Output].Columns[address_id]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;AddressId_BK&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLTP src.Outputs[OLE DB Source Output].Columns[address_status]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;AddressStatus&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLTP src.Outputs[OLE DB Source Output].Columns[email]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerEmail&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLTP src.Outputs[OLE DB Source Output].Columns[first_name]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerFirstName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Customer Fullname.Outputs[Derived Column Output].Columns[CustomerFullname]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerFullname&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLTP src.Outputs[OLE DB Source Output].Columns[customer_id]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerId_BK&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLTP src.Outputs[OLE DB Source Output].Columns[last_name]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerLastName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;OLTP src.Outputs[OLE DB Source Output].Columns[status_id]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;StatusId_BK&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load Customer Dim\Insert Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

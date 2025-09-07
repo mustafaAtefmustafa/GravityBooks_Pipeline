@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Gravity_Books_DWH_ETL", "Gravity_Books_DWH_ETL.dtproj", "{CE9226BD-2107-5648-8C2D-8783B6EBCFDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE9226BD-2107-5648-8C2D-8783B6EBCFDE}.Development|Default.ActiveCfg = Development
+		{CE9226BD-2107-5648-8C2D-8783B6EBCFDE}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FE50F44-2085-4CEA-B2A6-1531A0A246DC}
+	EndGlobalSection
+EndGlobal
